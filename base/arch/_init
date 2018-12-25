@@ -16,19 +16,15 @@ install() {
   # Set up yay (AUR helper)
   if ! _is_callable yay; then
     git clone https://aur.archlinux.org/yay.git /tmp/yay
-    pushd /tmp/yay
-    makepkg -si
-    popd
-    rm -rf /tmp/yay
-
+    cd /tmp/yay
+    makepkg -sri --noconfirm --needed
     if ! _is_callable yay; then
-      >&2 echo "Yay was not successfully installed"
-      return 3
+        >&2 echo "Could not find pacaur"
+        return 3
     fi
   fi
 
-  yay --needed --noconfirm -S ripgrep the_silver_searcher bc cronie
-  sudo systemctl enable cronie
+  yay --needed --noconfirm -S ripgrep the_silver_searcher bc
 }
 
 update() {
