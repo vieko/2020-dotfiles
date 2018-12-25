@@ -2,38 +2,14 @@
 source ${0:A:h}/../../deploy
 
 install() {
-  if ! nc -z 8.8.8.8 53 >/dev/null 2>&1; then
-    >&2 echo "No internet connection"
-    return 1
-  elif ! sudo pacman -Syu --noconfirm; then
-    >&2 echo "Could not update pacman"
-    return 2
-  elif ! _is_callable yay; then
-    >&2 echo "Could not find pacaur"
-    return 3
-  fi
-
+  # set up desktop environment
   yay --needed --noconfirm -S \
-    xorg-server xorg-xrandr xorg-xinit xorg-xlsfonts xorg-xfd xdotool \
+    xorg-server xorg-xrandr xorg-xinit xdotool \
+    rvxt-unicode rvxt-unicode-terminfo \
+    ttf-fira-{mono,sans} ttf-font-awesome tamsyn-font siji-git \
     lightdm lightdm-mini-greeter \
     bspwm sxhkd compton dunst xcb-proto polybar libnotify \
-    rvxt-unicode rvxt-unicode-terminfo \
-    slop feh maim ffmpeg zbar \
-    keybase-bin pass pass-otp \
-    neofetch glances inxi dfc youtube-dl \
-    ttf-fira-{mono,sans} ttf-font-awesome tamsyn-font siji-git \
-    arc-gtk-theme qt5-styleplugins \
-    evince
-
-  xdg-mime default evince.desktop application/pdf
-
-  # install crontab
-  crontab ./crontab
-
-  # raise inotify limit
-  sudo tee -a /etc/sysctl.d/99-sysctl.conf <<<"fs.inotify.max_user_watches=524288"
-
-  # set up lightdm + minigreeter
+    arc-gtk-theme qt5-styleplugins
   sudo systemctl enable lightdm
   sudo sed -i \
     -e "s@^#?\(greeter-session=\).+@\1lightdm-mini-greeter@" \
@@ -44,9 +20,32 @@ install() {
     -e "s@^\(show-password-label = \).+@\1false@" \
     -e "s@^\(background-color = \).+@\1\"#000000\"@;" \
     /etc/lightdm/lightdm-mini-greeter.conf
+
+  # install misc programs
+  yay --needed --noconfirm -S \
+    slop feh maim ffmpeg zbar \
+    keybase-bin pass pass-otp \
+    neofetch glances inxi dfc youtube-dl \
+    evince
+
+  xdg-mime default evince.desktop application/pdf
+
+  # install extra dependencies
+  yay --needed --noconfirm -S python python-pygpgme    # polybar
+  yay --needed --noconfirm -S xorg-xrandr              # bspwm
+
+  # install crontab
+  yay --needed --noconfirm -S cronie
+  crontab ./crontab
+  sudo systemctl enable cronie
+
+  # raise inotify limit
+  sudo tee -a /etc/sysctl.d/99-sysctl.conf <<<"fs.inotify.max_user_watches=524288"
 }
 
-# update() {}
+update() {
+  yay -Syu --noconfirm
+}
 
 link() {
   mklink xprofile ~/.xprofile
