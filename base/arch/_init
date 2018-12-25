@@ -2,14 +2,6 @@
 source ${0:A:h}/../../deploy
 
 install() {
-  if ! nc -z 8.8.8.8 53 >/dev/null 2>&1; then
-    >&2 echo "No internet connection"
-    return 1
-  elif ! sudo pacman -Syu --noconfirm; then
-    >&2 echo "Could not update pacman"
-    return 2
-  fi
-
   # Core essentials
   sudo pacman --needed --noconfirm -S wget git curl tree rsync dnsutils
 
