@@ -1,9 +1,11 @@
-unsetopt GLOBAL_RCS  # disable global zsh config; we'll handle it ourselves
+# disable global zsh config; we'll handle it ourselves
+unsetopt GLOBAL_RCS
+
 source $(cd ${${(%):-%x}:A:h}/../.. && pwd -P)/env
 
 # Move ZDOTDIR from $HOME to reduce dotfile pollution.
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-export ZGEN_DIR="$XDG_CACHE_HOME/zgen"
+export ZGEN_SOURCE="$XDG_CACHE_HOME/zgen"
 export ZSH_CACHE="$XDG_CACHE_HOME/zsh"
 
 # paths
@@ -12,7 +14,7 @@ path=( $XDG_BIN_HOME $DOTFILES/bin $DOTFILES_DATA/*.topic/bin(N) $path )
 fpath=( $ZDOTDIR/functions $XDG_BIN_HOME $fpath )
 
 # envvars
-export SHELL=$(command -v zsh)
+# export SHELL=$(command -v zsh)
 export LANG=${LANG:-en_US.UTF-8}
 export PAGER=less
 export LESS='-R -i -w -M -z-4'
