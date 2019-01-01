@@ -4,9 +4,9 @@
 # Displays
 #
 
-export MONITOR=$(xrandr -q | grep 'primary' | cut -d' ' -f1)
+export MONITOR=$(xrandr -q | grep primary | grep ' connected' | cut -d' ' -f1)
 export MONITORS=( $(xrandr -q | grep ' connected' | cut -d' ' -f1) )
-MONITOR=${MONITOR:-${MONITORS[0]}}
+MONITOR=${MONITOR:-${MONITORS[1]}}
 # Multiple workspaces for main monitor, but only one for others
 bspc monitor $MONITOR -d {1,2,3,4,5}
 for mon in ${MONITORS[@]/${MONITOR}}; do
@@ -47,7 +47,7 @@ bspc config bottom_padding  0
 bspc config left_padding    0
 bspc config right_padding   0
 
-bspc config -m $MONITOR window_gap     22
+bspc config -m $MONITOR window_gap     12
 bspc config -m $MONITOR bottom_padding 36
 bspc config -m $MONITOR top_padding    0
 bspc config -m $MONITOR left_padding   0
