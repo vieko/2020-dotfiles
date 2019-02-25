@@ -320,7 +320,8 @@ format-padding = 1
 type = custom/ipc
 hook-0 = ~/.config/polybar/modules/mail
 initial = 1
-click-left = polybar-msg -p %pid% hook mail 1
+click-left = xdg-open https://mail.google.com/
+click-right = polybar-msg -p %pid% hook mail 1
 format-padding-right = 1
 
 [module/app-redshift]
