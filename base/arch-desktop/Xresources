@@ -89,9 +89,7 @@ URxvt*.loginShell:             false
 URxvt.perl-ext-common:         default,matcher
 URxvt*.matcher.button:         1
 URxvt*.matcher.rend.0:         Uline Bold fg5
-URxvt*.url-launcher:           firefox
-!URxvt.keysym.Shift-Control-C:  perl:clipboard:copy
-!URxvt.keysym.Shift-Control-V:  perl:clipboard:paste
+URxvt*.url-launcher:           qutebrowser
 URxvt.clipboard.autocopy:      true
 
 ! URxvt*.font:                   xft:kakwa kakwafont:pixelsize=12
