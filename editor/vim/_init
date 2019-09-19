@@ -10,7 +10,7 @@ install() {
     debian) sudo apt-get install -y vim ;;
   esac
 
-  _ensure_repo hlissner/.vim $VIM_INSTALL_DIR && \
+  _ensure_repo vieko/.vim $VIM_INSTALL_DIR && \
     cd $VIM_INSTALL_DIR && \
     make install
 }

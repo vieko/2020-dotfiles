@@ -1,3 +1,4 @@
+export PATH="$HOME/.cargo/bin:$PATH"
 
 _init_path() {
     shopt -s nullglob
@@ -5,3 +6,4 @@ _init_path() {
     export PATH="$(printf '%s:' "${paths[@]}"):$PATH"
 }
 _init_path
+
