@@ -4,6 +4,7 @@ unsetopt GLOBAL_RCS
 source $(cd ${${(%):-%x}:A:h}/../.. && pwd -P)/env
 
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
 
 # Move ZDOTDIR from $HOME to reduce dotfile pollution.
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"

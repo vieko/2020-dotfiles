@@ -33,4 +33,6 @@ export _FASD_VIMINFO="$XDG_CACHE_HOME/viminfo"
 _cache fasd --init posix-alias zsh-{hook,{c,w}comp{,-install}}
 autopair-init
 
+export VISUAL=nvim
+
 # vim:set ft=sh:

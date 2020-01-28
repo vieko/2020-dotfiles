@@ -55,5 +55,8 @@ alias ydl-m4a='youtube-dl --extract-audio --audio-format m4a'
 alias ddg=duckduckgo
 alias bt=transmission-remote
 
+alias vi=nvim
+alias vim=nvim
+
 take() { mkdir "$1" && cd "$1"; }; compdef take=mkdir
 hex()  { echo -n $@ | xxd -psdu; }
