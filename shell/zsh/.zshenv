@@ -24,5 +24,9 @@ export LESS='-R -i -w -M -z-4'
 export LESSHISTFILE="$XDG_DATA_HOME/lesshst"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
 
+# deno
+export DENO_INSTALL="/home/vieko/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
 # initialize enabled topics
 _load_all env.zsh
