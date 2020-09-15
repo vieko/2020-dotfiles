@@ -28,5 +28,8 @@ export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
 export DENO_INSTALL="/home/vieko/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
+# gpg
+export GPG_TTY=$(tty)
+
 # initialize enabled topics
 _load_all env.zsh
