@@ -7,3 +7,5 @@ _init_path() {
 }
 _init_path
 
+export GPG_TTY=$(tty)
+
